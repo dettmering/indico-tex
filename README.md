@@ -1,4 +1,4 @@
 indico-tex
-==========
+============
 
-Generates (Xe)TeX abstract book from the INDICO conference management system.
+Scripts for auto-generating XeLaTeX abstract books from the INDICO conference management system

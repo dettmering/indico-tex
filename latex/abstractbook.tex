@@ -1,0 +1,106 @@
+\documentclass[10pt, a4paper, oldfontcommands]{memoir}
+\let\footruleskip\undefined
+\usepackage{fancyhdr}
+
+\usepackage[top=3.5cm, left=2.5cm, right=2.5cm, bottom=3cm]{geometry} % to change the page dimensions
+
+\pagestyle{fancy}
+%\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{#1}}{}}
+\renewcommand{\sectionmark}[1]{\markboth{\MakeUppercase{#1}}{}}
+\renewcommand{\headrulewidth}{0.3pt}
+
+\usepackage{fontspec}
+\usepackage{makeidx}
+
+\usepackage[usenames,dvipsnames,svgnames,table,cmyk]{xcolor}
+\usepackage{microtype}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5\baselineskip}
+
+
+%% HYPERREF
+
+\usepackage[hidelinks,
+            pdfauthor={Organization},
+            pdftitle={Book of abstracts},
+            pdfsubject={Book of abstracts},
+            pdfkeywords={Abstracts, Conference},
+            pdfproducer={},
+            pdfcreator={pdflatex}]{hyperref}
+            
+%% COMMANDS AND ENVIRONMENTS
+
+\newcommand{\invert}[1]{{\idfont\colorbox{black!15}{#1}}}
+
+\newenvironment{AbsHead}
+{   \setlength\parindent{0pt}%
+     \fontsize{16}{17}\headfont
+}%
+{
+    \par
+    \vspace{0.4 cm}
+}
+
+\newenvironment{AbsAuthors}
+{   \setlength\parindent{0pt}%
+    \fontsize{13}{10}\authorfont
+}%
+{
+   \par
+   \vspace{0.1 cm}
+}
+
+\newenvironment{AbsAffil}
+{   \setlength\parindent{0pt}%
+    \fontsize{10}{9}\affilfont
+}%
+{
+	\par
+	\vspace{0.2 cm}
+}
+
+\makeindex
+
+
+%% ITEMIZE
+
+\renewcommand{\labelitemi}{}
+\renewcommand{\labelitemii}{}
+\renewcommand{\labelitemiii}{}
+\renewcommand{\labelitemiv}{}
+
+%% HEADER AND FOOTER
+
+\fancyhead[RO]{{\leftmark}\hspace{2em} \thepage}
+\fancyhead[LE]{\thepage\hspace{2em}{\leftmark}}
+\fancyhead[RE,LO]{}
+\fancyfoot{}
+
+%% TYPEFACES
+
+\newfontfamily\idfont{Arial}
+\newfontfamily\authorfont{Arial}
+\newfontfamily\affilfont{Arial}
+\newfontfamily\headfont{Arial Bold}
+\newfontfamily\sectionfont{Arial Bold}
+\renewcommand*{\chaptitlefont}{\Huge\headfont}
+
+% TOC
+\renewcommand{\cftchapterfont}{\large\sectionfont}
+\renewcommand{\cftchapterpagefont}{\large\sectionfont}   
+\setlength{\cftparskip}{0.3\parskip} % More readable TOC
+
+%%%%% DOCUMENT
+
+\begin{document}
+\setmainfont{Times New Roman}
+
+\include{program}
+\tableofcontents
+\include{info}
+\include{abstractlist}
+
+\printindex
+
+\end{document}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AbstractBook>
+ <Conference>The Conference</Conference>
+ <abstract>
+  <Id>1</Id>
+  <Title>General Relativity</Title>
+  <Content>This is the text.</Content>
+  <field id="content">This is the text.</field>
+  <PrimaryAuthor>
+   <FirstName>John</FirstName>
+   <FamilyName>Doe</FamilyName>
+   <Email>j.doe@example.com</Email>
+   <Affiliation>An institute</Affiliation>
+  </PrimaryAuthor>
+  <PrimaryAuthor>
+   <FirstName>John</FirstName>
+   <FamilyName>Doe</FamilyName>
+   <Email>j.doe@example.com</Email>
+   <Affiliation>An institute</Affiliation>
+  </PrimaryAuthor>
+  <PrimaryAuthor>
+   <FirstName>Albert</FirstName>
+   <FamilyName>Einstein</FamilyName>
+   <Email>e.einstein@example.com</Email>
+   <Affiliation>Einstein Institute of Theoretical Physics</Affiliation>
+  </PrimaryAuthor>
+  <ContributionType>Contribution Type</ContributionType>
+  <Track>Physics</Track>
+ </abstract>
+</AbstractBook>
