@@ -117,7 +117,7 @@ def texOutput(data):
 	affiliations = []
 	
 	for w in data[2]:
-		aff = escapeTex(w[3]).encode("utf-8")
+		aff = w[3].encode("utf-8")
 		affiliations.append(aff)
 
 	nUnique = len(findUnique(affiliations))
@@ -140,8 +140,11 @@ def texOutput(data):
 	
 	affil = ""
 	
+	affilidx = 1
+	
 	for y in findUnique(affiliations):
-		affil += y + "\n"
+		affil += str(affilidx) + " " + y + "\n"
+		affilidx += 1
 	
 	affil += "\n"
 	
