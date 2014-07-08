@@ -103,13 +103,13 @@ def getAbstract(id):
 def texOutput(data):
 	output = []
 	
-	abs_id = "\\label{abs-" + data[0] + "}\\vspace{0.1 cm}\n"
-	title = "\\begin{AbsHead}" + escapeTex(data[1]) + "\\end{AbsHead}\n"
-	content = escapeTex(data[3])
+	abs_id = data[0] + "\n"
+	title = data[1] + "\n"
+	content = data[3]
 
 	# Generate authors and affiliations
 
-	authors = "\\begin{AbsAuthors}"
+	authors = ""
 
 	nComma = len(data[2]) - 1
 	iComma = 0
@@ -124,49 +124,34 @@ def texOutput(data):
 	toc_authors = []
 
 	for x in data[2]:
-		aff = escapeTex(x[3]).encode("utf-8")
-		authors += x[0][0] + ". " + x[1] + "\\index{" + x[1] + ", " + x[0][0] + ".}"
+		aff = x[3]
+		authors += x[0][0] + ". " + x[1]
 		toc_authors.append(x[1])
-		if (nUnique > 1):
-			authors += "\\textsuperscript{\\ref{" + hash(aff+data[0]) + "}}"
+#		if (nUnique > 1):
+#			Funktion die index fuer Autoren ausgibt
 		if (iComma < nComma):
 			authors += ", "
 		iComma += 1
 
-	authors += "\\end{AbsAuthors}\n"
+	authors += "\n"
 	
 	# Unique affiliations are replaced by a SHA1 hash to assign the correct index for each author.
 	# A TeX counter is initialized for each abstract which counts the unique affiliations
 	
-	affil = "\\newcounter{" + hash(data[0]) + "}\\setcounter{" + hash(data[0]) + "}{0}\\begin{AbsAffil}"
+	affil = ""
 	
 	for y in findUnique(affiliations):
-		if len(findUnique(affiliations)) > 1:
-			affil += "\\refstepcounter{" + hash(data[0]) + "}\\textbf{\\arabic{" + hash(data[0]) + "}}\\hphantom{n}"
-		affil += y  + "\\label{" + hash(y+data[0]) + "}\\par\n"
+		affil += y + "\n"
 	
-	affil += "\\end{AbsAffil}"
+	affil += "\n"
 	
-	# Generate TOC and header entry
-	
-	toc_entry = "\\addcontentsline{toc}{section}{"
-
-	toc_head_author = "\\textsc{" + toc_authors[0] + "}"
-	if len(toc_authors) > 1:
-		toc_head_author += " \\emph{et al.}"
-			
-	toc_entry += toc_head_author + ": " + escapeTex(data[1]) + "}\n"
-	
-	head_entry = "\markboth{" + toc_head_author + "}{}\n"
 
 	# Building the file
 
-	output.append(head_entry.encode("utf-8"))	
 	output.append(abs_id.encode("utf-8"))
 	output.append(title.encode("utf-8"))
 	output.append(authors.encode("utf-8"))
 	output.append(affil)
-	output.append(toc_entry.encode("utf-8"))
 	output.append(content.encode("utf-8"))
 	
 	return output
