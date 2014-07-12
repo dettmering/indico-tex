@@ -95,8 +95,9 @@ def getAbstract(id):
 	title = abstr[id][1].text
 	content = abstr[id][2].text
 	authors = getAuthors(id)
+	track = abstr[id][(len(abstr[id]) - 1)].text
 
-	return abs_id, title, authors, content
+	return abs_id, title, authors, content, track
 
 # Generates LaTeX output
 
@@ -182,7 +183,10 @@ while (id <= nAbstracts):
 	filename = a[0]
 	
 	writeFile(filename+".txt", texOutput(a)[0])
-	fileList.append(filename + ": " + texOutput(a)[1] + texOutput(a)[2] + "\n")
+	fileList.append("ID: " + filename)
+	fileList.append("Track: " + a[4])
+	fileList.append("Title: " + texOutput(a)[2])
+	fileList.append(texOutput(a)[1] + "\n")
 	id += 1
 	
 writeFile("abstractlist.txt", fileList)
