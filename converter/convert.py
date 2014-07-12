@@ -133,8 +133,6 @@ def texOutput(data):
 		if (iComma < nComma):
 			authors += ", "
 		iComma += 1
-
-	authors += "\n"
 	
 	# Unique affiliations are replaced by a SHA1 hash to assign the correct index for each author.
 	# A TeX counter is initialized for each abstract which counts the unique affiliations
@@ -177,16 +175,15 @@ fileList = []
 # Iterate through all abstracts and generate a .tex file for each abstracts
 # Generate a list of abstracts.
 
+fileList.append("ID;Authors;Title;Track")
+
 while (id <= nAbstracts):
 	a = getAbstract(id)
 	
 	filename = a[0]
 	
-	writeFile(filename+".txt", texOutput(a)[0])
-	fileList.append("ID: " + filename)
-	fileList.append("Track: " + a[4])
-	fileList.append("Title: " + texOutput(a)[2])
-	fileList.append("Authors: " + texOutput(a)[1] + "\n")
+	writeFile(filename+".txt", texOutput(a)[0])	
+	fileList.append(filename + ";" + texOutput(a)[1] + ";" + texOutput(a)[2] + ";" + a[4])
 	id += 1
 	
-writeFile("abstractlist.txt", fileList)
+writeFile("abstractlist.csv", fileList)
