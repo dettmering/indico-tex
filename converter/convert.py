@@ -95,7 +95,7 @@ def getAbstract(id):
 	title = abstr[id][1].text
 	content = abstr[id][2].text
 	authors = getAuthors(id)
-	
+
 	return abs_id, title, authors, content
 
 # Generates LaTeX output
@@ -153,11 +153,11 @@ def texOutput(data):
 
 	output.append(abs_id.encode("utf-8"))
 	output.append(title.encode("utf-8"))
-	output.append(authors.encode("utf-8"))
-	output.append(affil)
+#	output.append(authors.encode("utf-8"))
+#	output.append(affil)
 	output.append(content.encode("utf-8"))
 	
-	return output
+	return output, authors.encode("utf-8"), title.encode("utf-8")
 
 def writeFile(filename, data):
 	fo = open(filename, "wb+")
@@ -181,8 +181,8 @@ while (id <= nAbstracts):
 	
 	filename = a[0]
 	
-	writeFile(filename+".tex", texOutput(a))
-	fileList.append("\\input{"+filename+"} \\newpage")
+	writeFile(filename+".txt", texOutput(a)[0])
+	fileList.append(filename + ": " + texOutput(a)[1] + texOutput(a)[2] + "\n")
 	id += 1
 	
-writeFile("abstractlist.tex", fileList)
+writeFile("abstractlist.txt", fileList)
