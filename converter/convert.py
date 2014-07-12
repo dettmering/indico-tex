@@ -105,7 +105,7 @@ def texOutput(data):
 	output = []
 	
 	abs_id = data[0] + "\n"
-	title = data[1] + "\n"
+	title = data[1]
 	content = data[3]
 
 	# Generate authors and affiliations
@@ -186,7 +186,7 @@ while (id <= nAbstracts):
 	fileList.append("ID: " + filename)
 	fileList.append("Track: " + a[4])
 	fileList.append("Title: " + texOutput(a)[2])
-	fileList.append(texOutput(a)[1] + "\n")
+	fileList.append("Authors: " + texOutput(a)[1] + "\n")
 	id += 1
 	
 writeFile("abstractlist.txt", fileList)
