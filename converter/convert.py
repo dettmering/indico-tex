@@ -105,7 +105,7 @@ def texOutput(data):
 	output = []
 	
 	abs_id = data[0] + "\n"
-	title = data[1] + "\n"
+	title = data[1]
 	content = data[3]
 
 	# Generate authors and affiliations
